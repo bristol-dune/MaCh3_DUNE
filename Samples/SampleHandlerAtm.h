@@ -1,7 +1,7 @@
 #ifndef _SampleHandlerAtm_h_
 #define _SampleHandlerAtm_h_
 
-#include "Splines/BinnedSplineHandlerDUNE.h"
+#include "Splines/SplineHandlerFactoryDUNE.h"
 #include "Samples/SampleHandlerBase.h"
 
 #include "StructsDUNE.h"
@@ -53,6 +53,9 @@ protected:
 
   /// @brief Sets up splines 
   void SetupSplines();
+
+  /// @brief Initialise per-event spline weight pointers (for MonolithSplineHandler)
+  void InitialiseSplineObjectPerEvent();
 
   /// @brief Cleanup memory
   void CleanMemoryBeforeFit() override {};
@@ -118,6 +121,10 @@ protected:
   /// Multiplicative scaling to scale from the assumed 400ktyr value in the CAF files
   double ExposureScaling;
 
+  /// Path to the input spline file (for per-event spline mode)
+  std::string fInputSplines;
+  
+  /// Enums to define event selections
   enum EventSelectionIndices {
     kEventSel_Unknown = -1,    
     kEventSel_FC_NuE,
@@ -129,6 +136,7 @@ protected:
     nEventSelections,
   };
 
+  /// Enums to define ordering of the CVN scores from the CAF files
   enum CVNScoreIndices {
     kCVN_NuE,
     kCVN_NuMu,
@@ -136,7 +144,9 @@ protected:
     nCVN_Scores
   };
 
+  /// Cut value to separate Fully Contained and Partially Contained events
   double FCPCSeparation;
+  
   int ReturnSampleIdentifier(std::vector<double> CVNScores, double MinDistanceToWall);
   std::vector<std::string> EventSelectionNames = std::vector<std::string>(nEventSelections);
   std::vector<int> EventSelection_to_SampleIndex_Map = std::vector<int>(nEventSelections,kEventSel_Unknown);
