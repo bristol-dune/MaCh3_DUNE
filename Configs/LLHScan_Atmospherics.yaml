@@ -1,0 +1,49 @@
+---
+#=============================================================================
+General:
+  1DLLHScan: true
+
+  DUNESamples:
+    - "Configs/Samples/SampleHandler_FD_Atm.yaml"
+
+  SharedNuOscillatorObject:
+    ATM: "Configs/NuOsc/CUDAProb3_SubSampling_ProdHAvg_EarthSysts.yaml"
+
+  # Nu-FIT 5.2 w. SK atm
+  OscillationParameters: [0.303, 0.451, 0.0223, 7.41E-5, 2.51E-3, -2.234, 25, 1221.5, 3480., 5701., 6371., 1., 1., 1., 1., 0.468, 0.468, 0.496, 0.496]
+
+  Systematics:
+    XsecCovFile: ["Configs/CovObjs/OscCov_PDG2021_v2_Atmospherics_WithEarthSysts.yaml"]
+    XsecCovName: "xsec_cov"
+    XsecStepScale: 0.1
+    XsecAtGen: false
+    XsecFix: []
+  
+  # settings required in FitterBase/MCMCBase constructor 
+  OutputFile: "LLH_scan_out.root"
+  # below not relevant for LLH scan
+  Seed: 0
+  Debug: No
+  MCMC:
+    AutoSave: 5000
+    NSteps: 20000
+  Fitter:
+    FitTestLikelihood: false
+#=============================================================================
+
+#=============================================================================
+LLHScan:
+  # don't make LLH for certain systematic groups
+  #LLHScanSkipVector: ["sin2th_12", "sin2th_13", "delm2_12", "ProdH", "r_1", "r_2", "r_3", "r_4", "w_1", "w_2", "w_3", "w_4", "elecdensity_1", "elecdensity_2", "elecdensity_3", "elecdensity_4"]
+  LLHScanSkipVector: []
+  # Save individual sample contributions to the LLH
+  LLHScanBySample: true
+  # Number of points we run LLH scans for each systematic
+  LLHScanPoints: 50
+  # Number of points for 2D scan in each direction
+  #2DLLHScanPoints: 20
+  # Add physical ranges for special params whose priors/errors may not be well well-defined
+  ScanRanges:
+    delta_cp: [-3.14,3.14]
+    sin2th_23: [0.35, 0.65]
+#=============================================================================
