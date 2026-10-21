@@ -34,7 +34,7 @@ Atm_FC_nuelike:
   Binning:
     VarStr: ["RecoCosineZ", "RecoNeutrinoEnergy"]
     VarBins: [[-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1], [0, 0.11, 0.17, 0.26, 0.4, 0.63, 1.03, 1.71, 2.94, 5.48, 1e8]]
-    VarStr: ["RecoCosineZ", "RecoLeptonEnergy", "RecoHadronEnergy"]
+    #VarStr: ["RecoCosineZ", "RecoLeptonEnergy", "RecoHadronEnergy"]
     #VarBins: [[-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1],  [0, 1.01956539e-1, 1.81921527e-1, 2.73498382e-1, 4.00934011e-1, 6.17501572e-1, 1.03829864, 1.96316725,4.26303837,10.3730516, 100], [0,  5.64775392e-2,  9.50158760e-2,  1.41915500e-1, 2.02066153e-1,  2.90081054e-1,  4.40212965e-1,  7.44165957e-1, 1.43483913,  3.56719995,  100]]
     Uniform: true
   SampleOptions:
